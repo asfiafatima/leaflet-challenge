@@ -1,0 +1,32 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map {
+  height: 100vh;
+}
+
+.legend {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  font-size: 12px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 10px;
+  margin-right: 5px;
+}

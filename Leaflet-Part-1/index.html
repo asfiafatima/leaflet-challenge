@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Leaflet Step-1</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin="" />
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+
+<body>
+
+  <!-- The div that holds our map -->
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+  <!-- D3 JavaScript -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- Our JavaScript -->
+  <script type="text/javascript" src="static/js/logic.js"></script>
+  <script type="text/javascript">
+    // Create a legend control
+    let legend = L.control({ position: 'bottomright' });
+
+    // Add the legend to the map
+    legend.onAdd = function (map) {
+      let div = L.DomUtil.create('div', 'legend');
+      let grades = [-10, 10, 30, 50, 70, 90];
+      let labels = [];
+
+      labels.push('<strong>Depth</strong>');
+      for (let i = 0; i < grades.length; i++) {
+        let from = grades[i];
+        let to = grades[i + 1] || '+';
+        let color = getColor(from + 1);
+        labels.push(
+          '<div class="legend-item">' +
+          '<div class="legend-color" style="background:' + color + '"></div>' +
+          '<div>' + from + (to ? '&ndash;' + to : '') + '</div>' +
+          '</div>'
+        );
+      }
+
+      div.innerHTML = labels.join('');
+      return div;
+    };
+
+    // Add legend control to the map
+    legend.addTo(map);
+  </script>
+</body>
+
+</html>
